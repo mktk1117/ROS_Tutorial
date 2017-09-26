@@ -1,4 +1,5 @@
-This is a tutorial of this group.
+# phenox-ros
+This is a tutorial of the group, phenox-ros.
 
 ## Git
 - some useful URLs
