@@ -56,3 +56,11 @@ sudo apt-get install -y ccache
 echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc \
 && source ~/.bashrc && echo $PATH
 ```
+
+## Workspace setting
+We recommend to make a git folder and link every repositories to catkin_ws to make it easier to update and maintain.
+```bash
+mkdir ~/git
+cd ~/git
+```
+Then, clone this repository in git.
