@@ -29,3 +29,20 @@ Its more convinient to use ssh rather than https.
 - [ROS](http://wiki.ros.org/)
 - [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
 - [ROS チュートリアル(ja)](http://wiki.ros.org/ja/ROS/Tutorials)
+
+### Setup workspace
+We explain with ROS kinetc. If you use other version, please replace with your version.
+```bash
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
+catkin init
+catkin config --extend /opt/ros/kinetic
+catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
+catkin config --merge-devel # this is important, otherwise you may get weird linking errors
+cd src
+wstool init
+wstool update
+wstool update -j8
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
