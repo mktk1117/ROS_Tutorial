@@ -47,3 +47,12 @@ catkin config --merge-devel # this is important, otherwise you may get weird lin
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
+
+### Set up ccache
+
+ccache is a tool that caches intermediate build files to speed up rebuilds of the same code. On Ubuntu it can be set up with the following command.
+```bash
+sudo apt-get install -y ccache
+echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc \
+&& source ~/.bashrc && echo $PATH
+```
