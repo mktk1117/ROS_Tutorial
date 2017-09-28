@@ -72,8 +72,18 @@ Compile the repositories.
 cd ~/catkin_ws
 catkin build
 ```
-If you are using Jetson, and have an error of config.guess at glog_catkin, replace config.guess and config.sub.
+
+### Errors
+- If you are using Jetson, and have an error of config.guess at glog_catkin, replace config.guess and config.sub.
+
 ```bash
 cp ~/catkin_ws/src/tutorial/glog_files_jetson/config.guess ~/catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src/
 cp ~/catkin_ws/src/tutorial/glog_files_jetson/config.sub ~/catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src/
+```
+- If there is an error with libGL.so on jetson, follow the command below.
+
+```bash
+cd /usr/lib/aarch64-linux-gnu
+sudo rm libGL.so
+sudo ln -s /usr/lib/aarch64-linux-gnu/tegra/libGL.so libGL.so
 ```
