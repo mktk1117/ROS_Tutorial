@@ -32,7 +32,8 @@ Its more convinient to use ssh rather than https.
 
 ### Install dependencies
 ```bash
-sudo apt-get install python-catkin-tools
+sudo apt-get install python-catkin-tools -y
+sudo apt-get install ros-kinetic-geometry -y
 ```
 
 ### Setup workspace
@@ -44,6 +45,12 @@ catkin init
 catkin config --extend /opt/ros/kinetic
 catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin config --merge-devel # this is important, otherwise you may get weird linking errors
+cd src
+wstool init
+wstool set --git tutorial ssh://git@192.168.1.100:10022/phenox-ros/tutorial.git -y
+wstool update
+wstool merge tutorial/rosinstall/ethz_asl.rosinstall
+wstool update -j8
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -56,11 +63,14 @@ sudo apt-get install -y ccache
 echo 'export PATH="/usr/lib/ccache:$PATH"' | tee -a ~/.bashrc \
 && source ~/.bashrc && echo $PATH
 ```
-
-## Workspace setting
-We recommend to make a git folder and link every repositories to catkin_ws to make it easier to update and maintain.
+### Build
+Compile the repositories.
 ```bash
-mkdir ~/git
-cd ~/git
+cd ~/catkin_ws
+catkin build
 ```
-Then, clone this repository in git.
+If you are using Jetson, and have an error of config.guess at glog_catkin, replace config.guess and config.sub.
+```bash
+cp ~/catkin_ws/src/tutorial/glog_files_jetson/config.guess ~/catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src/
+cp ~/catkin_ws/src/tutorial/glog_files_jetson/config.sub ~/catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src/
+```
