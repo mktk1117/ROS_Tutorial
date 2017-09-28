@@ -30,8 +30,11 @@ Its more convinient to use ssh rather than https.
 - [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
 - [ROS チュートリアル(ja)](http://wiki.ros.org/ja/ROS/Tutorials)
 
+If you have not installed ROS yet, install it first and complete the rosdep initialization.
+
 ### Install dependencies
 ```bash
+sudo apt-get install python-rosinstall -y
 sudo apt-get install python-catkin-tools -y
 sudo apt-get install ros-kinetic-geometry -y
 ```
