@@ -50,7 +50,7 @@ catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin config --merge-devel # this is important, otherwise you may get weird linking errors
 cd src
 wstool init
-wstool set --git tutorial ssh://git@192.168.1.100:10022/phenox-ros/tutorial.git -y
+wstool set --git tutorial https://github.com/mktk1117/ROS_Tutorial.git -y
 wstool update
 wstool merge tutorial/rosinstall/ethz_asl.rosinstall
 wstool update -j8
