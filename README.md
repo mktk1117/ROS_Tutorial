@@ -61,8 +61,8 @@ sudo apt-get install ros-kinetic-geometry -y
 We explain with ROS kinetc. If you use other version, please replace with your version.
 First, clone this repo to your workspace.
 ```bash
-mkdir ~/git
-cd ~/git
+mkdir ~/ros_tutorial
+cd ~/ros_tutorial
 git clone ssh://git@192.168.1.100:10022/phenox-ros/tutorial.git
 ```
 
@@ -76,7 +76,7 @@ catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin config --merge-devel # this is important, otherwise you may get weird linking errors
 cd src
 wstool init
-wstool merge ~/git/tutorial/rosinstall/ethz_asl.rosinstall
+wstool merge ~/rostutorial/tutorial/rosinstall/ethz_asl.rosinstall
 wstool update -j8
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
