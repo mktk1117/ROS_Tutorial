@@ -24,6 +24,12 @@ Its more convinient to use ssh rather than https.
 [GitLab Documentation SSH](https://docs.gitlab.com/ce/ssh/README.html)  
 [SSH認証キーをGitLabに登録・設定手順 覚書](https://qiita.com/redamoon/items/07e445d1fce360cb5fa3)
 
+#### Change the appearance on the command line
+If you add these lines to your bashrc, the branch information will be displayed on your command line.
+```bash
+export GIT_PS1_SHOWDIRTYSTATE=1
+export PS1='\n\n■ \[\033[03;32m\]\u\[\033[01;34m\]:\w\[\033[02;33m\]$(__git_ps1)\[\033[01;34m\]\n\$\[\033[00m\] '
+```
 
 ## ROS
 - [ROS](http://wiki.ros.org/)
@@ -32,15 +38,35 @@ Its more convinient to use ssh rather than https.
 
 If you have not installed ROS yet, install it first and complete the rosdep initialization.
 
+### Install ROS kinetic
+```bash
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-get update
+sudo apt-get install ros-kinetic-desktop-full
+sudo rosdep init
+rosdep update
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
 ### Install dependencies
 ```bash
-sudo apt-get install python-rosinstall -y
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential -y
 sudo apt-get install python-catkin-tools -y
 sudo apt-get install ros-kinetic-geometry -y
 ```
 
 ### Setup workspace
 We explain with ROS kinetc. If you use other version, please replace with your version.
+First, clone this repo to your workspace.
+```bash
+mkdir ~/git
+cd ~/git
+git clone ssh://git@192.168.1.100:10022/phenox-ros/tutorial.git
+```
+
+
 ```bash
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
@@ -50,9 +76,7 @@ catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin config --merge-devel # this is important, otherwise you may get weird linking errors
 cd src
 wstool init
-wstool set --git tutorial ssh://git@192.168.1.100:10022/phenox-ros/tutorial.git -y
-wstool update
-wstool merge tutorial/rosinstall/ethz_asl.rosinstall
+wstool merge ~/git/tutorial/rosinstall/ethz_asl.rosinstall
 wstool update -j8
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
