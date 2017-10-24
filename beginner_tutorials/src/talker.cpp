@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "beginner_tutorials_msgs/test.h"
 
 #include <sstream>
 
@@ -47,6 +48,7 @@ int main(int argc, char **argv)
    * buffer up before throwing some away.
    */
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::Publisher test_pub = n.advertise<beginner_tutorials_msgs::test>("test", 1000);
 
   ros::Rate loop_rate(10);
 
@@ -75,6 +77,12 @@ int main(int argc, char **argv)
      * in the constructor above.
      */
     chatter_pub.publish(msg);
+
+    beginner_tutorials_msgs::test testmsg;
+    testmsg.child_frame_id = "test_frame";
+    testmsg.pose.pose.position.x = 100;
+
+    test_pub.publish(testmsg);
 
     ros::spinOnce();
 
