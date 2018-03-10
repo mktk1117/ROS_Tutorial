@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nodelet_tutorial</name>
+  <version>0.0.0</version>
+  <description>The nodelet_tutorial package</description>
+
+  <maintainer email="takahiro.miki1992@gmail.com">Takahiro Miki</maintainer>
+
+  <license>TODO</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>nodelet</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelet_tutorial.xml" />
+  </export>
+
+</package>

@@ -1,0 +1,14 @@
+<library path="lib/libnodelet_tutorial">
+	<class name="nodelet_tutorial/Talker" type="nodelet_tutorial::Talker"
+		base_class_type="nodelet::Nodelet">
+		<description>
+			Nodelet Tutorial Class.
+		</description>
+	</class>
+	<class name="nodelet_tutorial/Listener" type="nodelet_tutorial::Listener"
+		base_class_type="nodelet::Nodelet">
+		<description>
+			Nodelet Tutorial Class.
+		</description>
+	</class>
+</library>
